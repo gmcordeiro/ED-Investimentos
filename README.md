@@ -1,11 +1,11 @@
 # ED3-Investimentos
 Desenvolvimento de API REST com Kotlin para o 3º Estudo dirigido de Tec. da Web
 
-Ferramentas usadas:
-https://openapi-generator.tech/
-https://swagger.io/
-https://app.diagrams.net/
-https://www.postman.com/
+Ferramentas usadas: <br>
+https://openapi-generator.tech/ <br>
+https://swagger.io/ <br>
+https://app.diagrams.net/ <br>
+https://www.postman.com/ <br>
 
-Documentações suplementares:
-https://www.openapis.org/
+Documentações suplementares: <br>
+https://www.openapis.org/ <br>
