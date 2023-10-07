@@ -23,6 +23,11 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation ("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22")
+	implementation ("org.jetbrains.kotlin:kotlin-reflect:1.8.22")
+	implementation ("com.squareup.moshi:moshi-kotlin:1.14.0")
+	implementation ("com.squareup.moshi:moshi-adapters:1.14.0")
+	implementation ("com.squareup.okhttp3:okhttp:4.11.0")
 	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

@@ -1,0 +1,249 @@
+---
+openapi: 3.0.0
+info:
+  title: Investments
+  description: API for investments in financial assets
+  contact:
+    email: gmcordeiro.inf@gmail.com
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/GMCORDEIRO.inf/Investimentos/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: http://localhost:8080
+  description: Local Host
+tags:
+- name: production
+  description: Operations in production environments
+- name: developers
+  description: Operations available to admin developers
+paths:
+  /portfolio:
+    get:
+      tags:
+      - production
+      summary: searches portfolio
+      description: |
+        By passing in the appropriate options, you can search for
+        available inventory in the system
+      operationId: searchPortfolio
+      parameters:
+      - name: Portfolio ID
+        in: query
+        description: pass a opcional ID for search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Portfolio'
+        "400":
+          description: is not ok
+    post:
+      tags:
+      - production
+      summary: adds an portfolio itens
+      description: Adds an item to the system
+      operationId: addPortfolio
+      requestBody:
+        description: Portfólio item to add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Portfolio'
+      responses:
+        "201":
+          description: item created
+        "400":
+          description: "invalid input, object invalid"
+        "409":
+          description: an existing item already exists
+  /asset:
+    get:
+      tags:
+      - production
+      summary: searches financial assets
+      description: |
+        By passing in the appropriate options, you can search for
+        available inventory in the system
+      operationId: searchAssets
+      parameters:
+      - name: Asset ID
+        in: query
+        description: pass a opcional ID for search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          format: uuid
+      - name: Asset Ticket
+        in: query
+        description: pass a opcional ticket for search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FinancialAssets'
+        "400":
+          description: is not ok
+    post:
+      tags:
+      - production
+      summary: adds an Transaction itens
+      description: Adds an item to the system
+      operationId: addAssets
+      requestBody:
+        description: Portfólio item to add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FinancialAssets'
+      responses:
+        "201":
+          description: item created
+        "400":
+          description: "invalid input, object invalid"
+        "409":
+          description: an existing item already exists
+  /transaction:
+    get:
+      tags:
+      - production
+      summary: searches Transactions
+      description: |
+        By passing in the appropriate options, you can search for
+        available inventory in the system
+      operationId: searchTransaction
+      parameters:
+      - name: Asset ID
+        in: query
+        description: pass a opcional ID for search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          format: uuid
+      - name: Transaction ID
+        in: query
+        description: pass a opcional ticket for search
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+        "400":
+          description: is not ok
+    post:
+      tags:
+      - production
+      summary: adds an financial assets itens
+      description: Adds an item to the system
+      operationId: addTransactions
+      requestBody:
+        description: Portfólio item to add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+      responses:
+        "201":
+          description: item created
+        "400":
+          description: "invalid input, object invalid"
+        "409":
+          description: an existing item already exists
+components:
+  schemas:
+    Portfolio:
+      required:
+      - description
+      - financialAssets
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        description:
+          type: string
+          example: Real estate asset portfolio
+        financialAssets:
+          type: array
+          items:
+            $ref: '#/components/schemas/FinancialAssets'
+    FinancialAssets:
+      required:
+      - enterpriseName
+      - id
+      - numberAssets
+      - ticket
+      - unitAssetValue
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        ticket:
+          type: string
+          example: ITSA4
+        enterpriseName:
+          type: string
+          example: Itaúsa
+    Transaction:
+      required:
+      - assetID
+      - id
+      - numberAssets
+      - transactionType
+      - transactionValue
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        transactionType:
+          type: string
+          example: buy
+        assetID:
+          $ref: '#/components/schemas/FinancialAssets/properties/id'
+        numberAssets:
+          type: integer
+        transactionValue:
+          type: number
+      discriminator:
+        propertyName: transactionType
+        mapping:
+          buy: Buy
+          sale: Sale
