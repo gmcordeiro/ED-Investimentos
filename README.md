@@ -1,11 +1,23 @@
 # ED3-Investimentos
 Desenvolvimento de API REST com Kotlin para o 3º Estudo dirigido de Tec. da Web
 
-Ferramentas usadas: <br>
-https://openapi-generator.tech/ <br>
-https://swagger.io/ <br>
-https://app.diagrams.net/ <br>
-https://www.postman.com/ <br>
+| Contrato |
+|----------|
+ - [Investimentos-1.0.0-swagger.yaml](https://github.com/gmcordeiro/ED3-Investimentos/blob/dd1d10f2bb7ef1f09c5ab25f8e0a4a3fa7e02ba9/README.md#L5-L4)
+ - [Investimentos-1.0.0.yaml](https://github.com/gmcordeiro/ED3-Investimentos/blob/master/Contract/Investimentos-1.0.0.yaml)
+ - Contrato também disponível no site da ferramenta [swagger](https://app.swaggerhub.com/apis-docs/GMCORDEIRO.inf/Investimentos/1.0.0#/)
 
-Documentações suplementares: <br>
-https://www.openapis.org/ <br>
+---
+| Ferramentas usadas |
+|--------------------|
+ - [OpenAPI Generator](https://openapi-generator.tech/): Ferramenta disponibilizada pela OpenAPI para gerar as API's baseadas no contrato. Através do comando `openapi-generator-cli generate -i petstore.yaml -g kotlin -o /tmp/test/`. Desta ferramenta eu vou aproveitar apenas os models e as infrastructures e vou desenvolver as apis manualmente
+ - [Swagger](https://swagger.io/): Ferramenta de documentação de API's, similar ao postman, mas que pra mim é mais facil de usar e testar
+ - [Draw.io](https://app.diagrams.net/): Ferramenta para criação de diagramas
+ - [Postman](https://www.postman.com/): Postman é uma plataforma de API para desenvolvedores
+
+---
+| Documentações suplementares |
+|-----------------------------|
+ - [OpenAPI's](https://www.openapis.org/): define o padrão para documentação do contrato da API
+
+> Diagrama DER disponível em: https://app.diagrams.net/#G1ThkSrWWsvmT1o0eX2bfw10OTvt-8o8Vy
