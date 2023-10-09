@@ -1,4 +1,4 @@
-package openapitools.client.infrastructure
+package ED3.infrastructure
 
 import okhttp3.Response
 

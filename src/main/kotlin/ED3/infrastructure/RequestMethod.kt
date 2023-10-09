@@ -1,4 +1,4 @@
-package openapitools.client.infrastructure
+package ED3.infrastructure
 
 /**
  * Provides enumerated HTTP verbs

@@ -1,4 +1,4 @@
-package br.com.ED3Investimentos
+package ED3
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

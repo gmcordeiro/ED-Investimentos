@@ -7,33 +7,33 @@
  */
 
 @file:Suppress(
-    "ArrayInDataClass",
-    "EnumEntryName",
-    "RemoveRedundantQualifierName",
-    "UnusedImport"
+        "ArrayInDataClass",
+        "EnumEntryName",
+        "RemoveRedundantQualifierName",
+        "UnusedImport"
 )
 
-package openapitools.client.apis
+package ED3.apis
 
 import java.io.IOException
 import okhttp3.OkHttpClient
 import okhttp3.HttpUrl
 
-import openapitools.client.models.FinancialAssets
-import openapitools.client.models.Portfolio
-import openapitools.client.models.Transaction
+import ED3.Investimentos.models.FinancialAssets
+import ED3.Investimentos.models.Portfolio
+import ED3.Investimentos.models.Transaction
 
-import openapitools.client.infrastructure.ApiClient
-import openapitools.client.infrastructure.ApiResponse
-import openapitools.client.infrastructure.ClientException
-import openapitools.client.infrastructure.ClientError
-import openapitools.client.infrastructure.ServerException
-import openapitools.client.infrastructure.ServerError
-import openapitools.client.infrastructure.MultiValueMap
-import openapitools.client.infrastructure.RequestConfig
-import openapitools.client.infrastructure.RequestMethod
-import openapitools.client.infrastructure.ResponseType
-import openapitools.client.infrastructure.Success
+import ED3.infrastructure.ApiClient
+import ED3.infrastructure.ApiResponse
+import ED3.infrastructure.ClientException
+import ED3.infrastructure.ClientError
+import ED3.infrastructure.ServerException
+import ED3.infrastructure.ServerError
+import ED3.infrastructure.MultiValueMap
+import ED3.infrastructure.RequestConfig
+import ED3.infrastructure.RequestMethod
+import ED3.infrastructure.ResponseType
+import ED3.infrastructure.Success
 
 class ProductionApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = ApiClient.defaultClient) : ApiClient(basePath, client) {
     companion object {
@@ -86,7 +86,7 @@ class ProductionApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCli
         val localVariableConfig = addAssetsRequestConfig(financialAssets = financialAssets)
 
         return request<FinancialAssets, Unit>(
-            localVariableConfig
+                localVariableConfig
         )
     }
 
@@ -101,14 +101,14 @@ class ProductionApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCli
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
-        
+
         return RequestConfig(
-            method = RequestMethod.POST,
-            path = "/asset",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = false,
-            body = localVariableBody
+                method = RequestMethod.POST,
+                path = "/asset",
+                query = localVariableQuery,
+                headers = localVariableHeaders,
+                requiresAuthentication = false,
+                body = localVariableBody
         )
     }
 
@@ -155,7 +155,7 @@ class ProductionApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCli
         val localVariableConfig = addPortfolioRequestConfig(portfolio = portfolio)
 
         return request<Portfolio, Unit>(
-            localVariableConfig
+                localVariableConfig
         )
     }
 
@@ -170,14 +170,14 @@ class ProductionApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCli
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
-        
+
         return RequestConfig(
-            method = RequestMethod.POST,
-            path = "/portfolio",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = false,
-            body = localVariableBody
+                method = RequestMethod.POST,
+                path = "/portfolio",
+                query = localVariableQuery,
+                headers = localVariableHeaders,
+                requiresAuthentication = false,
+                body = localVariableBody
         )
     }
 
@@ -224,7 +224,7 @@ class ProductionApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCli
         val localVariableConfig = addTransactionsRequestConfig(transaction = transaction)
 
         return request<Transaction, Unit>(
-            localVariableConfig
+                localVariableConfig
         )
     }
 
@@ -239,20 +239,20 @@ class ProductionApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCli
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
-        
+
         return RequestConfig(
-            method = RequestMethod.POST,
-            path = "/transaction",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = false,
-            body = localVariableBody
+                method = RequestMethod.POST,
+                path = "/transaction",
+                query = localVariableQuery,
+                headers = localVariableHeaders,
+                requiresAuthentication = false,
+                body = localVariableBody
         )
     }
 
     /**
      * searches financial assets
-     * By passing in the appropriate options, you can search for available inventory in the system 
+     * By passing in the appropriate options, you can search for available inventory in the system
      * @param assetID pass a opcional ID for search (optional)
      * @param assetTicket pass a opcional ticket for search (optional)
      * @return kotlin.collections.List<FinancialAssets>
@@ -284,7 +284,7 @@ class ProductionApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCli
 
     /**
      * searches financial assets
-     * By passing in the appropriate options, you can search for available inventory in the system 
+     * By passing in the appropriate options, you can search for available inventory in the system
      * @param assetID pass a opcional ID for search (optional)
      * @param assetTicket pass a opcional ticket for search (optional)
      * @return ApiResponse<kotlin.collections.List<FinancialAssets>?>
@@ -297,7 +297,7 @@ class ProductionApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCli
         val localVariableConfig = searchAssetsRequestConfig(assetID = assetID, assetTicket = assetTicket)
 
         return request<Unit, kotlin.collections.List<FinancialAssets>>(
-            localVariableConfig
+                localVariableConfig
         )
     }
 
@@ -311,30 +311,30 @@ class ProductionApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCli
     fun searchAssetsRequestConfig(assetID: java.util.UUID?, assetTicket: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
-            .apply {
-                if (assetID != null) {
-                    put("Asset ID", listOf(assetID.toString()))
+                .apply {
+                    if (assetID != null) {
+                        put("Asset ID", listOf(assetID.toString()))
+                    }
+                    if (assetTicket != null) {
+                        put("Asset Ticket", listOf(assetTicket.toString()))
+                    }
                 }
-                if (assetTicket != null) {
-                    put("Asset Ticket", listOf(assetTicket.toString()))
-                }
-            }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/asset",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = false,
-            body = localVariableBody
+                method = RequestMethod.GET,
+                path = "/asset",
+                query = localVariableQuery,
+                headers = localVariableHeaders,
+                requiresAuthentication = false,
+                body = localVariableBody
         )
     }
 
     /**
      * searches portfolio
-     * By passing in the appropriate options, you can search for available inventory in the system 
+     * By passing in the appropriate options, you can search for available inventory in the system
      * @param portfolioID pass a opcional ID for search (optional)
      * @return kotlin.collections.List<Portfolio>
      * @throws IllegalStateException If the request is not correctly configured
@@ -365,7 +365,7 @@ class ProductionApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCli
 
     /**
      * searches portfolio
-     * By passing in the appropriate options, you can search for available inventory in the system 
+     * By passing in the appropriate options, you can search for available inventory in the system
      * @param portfolioID pass a opcional ID for search (optional)
      * @return ApiResponse<kotlin.collections.List<Portfolio>?>
      * @throws IllegalStateException If the request is not correctly configured
@@ -377,7 +377,7 @@ class ProductionApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCli
         val localVariableConfig = searchPortfolioRequestConfig(portfolioID = portfolioID)
 
         return request<Unit, kotlin.collections.List<Portfolio>>(
-            localVariableConfig
+                localVariableConfig
         )
     }
 
@@ -390,27 +390,27 @@ class ProductionApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCli
     fun searchPortfolioRequestConfig(portfolioID: java.util.UUID?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
-            .apply {
-                if (portfolioID != null) {
-                    put("Portfolio ID", listOf(portfolioID.toString()))
+                .apply {
+                    if (portfolioID != null) {
+                        put("Portfolio ID", listOf(portfolioID.toString()))
+                    }
                 }
-            }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/portfolio",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = false,
-            body = localVariableBody
+                method = RequestMethod.GET,
+                path = "/portfolio",
+                query = localVariableQuery,
+                headers = localVariableHeaders,
+                requiresAuthentication = false,
+                body = localVariableBody
         )
     }
 
     /**
      * searches Transactions
-     * By passing in the appropriate options, you can search for available inventory in the system 
+     * By passing in the appropriate options, you can search for available inventory in the system
      * @param assetID pass a opcional ID for search (optional)
      * @param transactionID pass a opcional ticket for search (optional)
      * @return kotlin.collections.List<Transaction>
@@ -442,7 +442,7 @@ class ProductionApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCli
 
     /**
      * searches Transactions
-     * By passing in the appropriate options, you can search for available inventory in the system 
+     * By passing in the appropriate options, you can search for available inventory in the system
      * @param assetID pass a opcional ID for search (optional)
      * @param transactionID pass a opcional ticket for search (optional)
      * @return ApiResponse<kotlin.collections.List<Transaction>?>
@@ -455,7 +455,7 @@ class ProductionApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCli
         val localVariableConfig = searchTransactionRequestConfig(assetID = assetID, transactionID = transactionID)
 
         return request<Unit, kotlin.collections.List<Transaction>>(
-            localVariableConfig
+                localVariableConfig
         )
     }
 
@@ -469,28 +469,28 @@ class ProductionApi(basePath: kotlin.String = defaultBasePath, client: OkHttpCli
     fun searchTransactionRequestConfig(assetID: java.util.UUID?, transactionID: java.util.UUID?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
-            .apply {
-                if (assetID != null) {
-                    put("Asset ID", listOf(assetID.toString()))
+                .apply {
+                    if (assetID != null) {
+                        put("Asset ID", listOf(assetID.toString()))
+                    }
+                    if (transactionID != null) {
+                        put("Transaction ID", listOf(transactionID.toString()))
+                    }
                 }
-                if (transactionID != null) {
-                    put("Transaction ID", listOf(transactionID.toString()))
-                }
-            }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
-            method = RequestMethod.GET,
-            path = "/transaction",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            requiresAuthentication = false,
-            body = localVariableBody
+                method = RequestMethod.GET,
+                path = "/transaction",
+                query = localVariableQuery,
+                headers = localVariableHeaders,
+                requiresAuthentication = false,
+                body = localVariableBody
         )
     }
 
 
     private fun encodeURIComponent(uriComponent: kotlin.String): kotlin.String =
-        HttpUrl.Builder().scheme("http").host("localhost").addPathSegment(uriComponent).build().encodedPathSegments[0]
+            HttpUrl.Builder().scheme("http").host("localhost").addPathSegment(uriComponent).build().encodedPathSegments[0]
 }

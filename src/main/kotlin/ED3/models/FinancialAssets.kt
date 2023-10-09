@@ -13,7 +13,7 @@
     "UnusedImport"
 )
 
-package openapitools.client.models
+package ED3.Investimentos.models
 
 
 import com.squareup.moshi.Json

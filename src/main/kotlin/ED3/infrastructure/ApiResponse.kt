@@ -1,4 +1,4 @@
-package openapitools.client.infrastructure
+package ED3.infrastructure
 
 enum class ResponseType {
     Success, Informational, Redirection, ClientError, ServerError

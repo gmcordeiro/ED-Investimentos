@@ -1,7 +1,7 @@
 @file:Suppress("unused")
-package openapitools.client.infrastructure
+package ED3.infrastructure
 
-import openapitools.client.infrastructure.Response
+import ED3.infrastructure.Response
 import java.lang.RuntimeException
 
 open class ClientException(message: kotlin.String? = null, val statusCode: Int = -1, val response: Response? = null) : RuntimeException(message) {

@@ -1,4 +1,4 @@
-package openapitools.client.infrastructure
+package ED3.infrastructure
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

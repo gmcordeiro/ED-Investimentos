@@ -1,4 +1,4 @@
-package openapitools.client.infrastructure
+package ED3.infrastructure
 
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.ToJson

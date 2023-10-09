@@ -13,8 +13,9 @@
     "UnusedImport"
 )
 
-package openapitools.client.models
+package ED3.Investimentos.models
 
+import br.com.ED3Investimentos.models.FinancialAssets
 import com.squareup.moshi.Json
 
 /**
@@ -35,7 +36,7 @@ interface Transaction {
     @Json(name = "transactionType")
     val transactionType: kotlin.String
     @Json(name = "assetID")
-    val assetID:  FinancialAssets
+    val assetID: FinancialAssets
     @Json(name = "numberAssets")
     val numberAssets: kotlin.Int
     @Json(name = "transactionValue")
