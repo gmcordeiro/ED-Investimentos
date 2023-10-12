@@ -1,4 +1,4 @@
-package br.com.ed3.apis
+package br.com.ed3
 
 import org.springframework.web.bind.annotation.RestController;
 

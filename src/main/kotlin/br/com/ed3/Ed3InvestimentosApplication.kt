@@ -1,4 +1,4 @@
-package ED3
+package br.com.ed3
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class Ed3InvestimentosApplication
 
 fun main(args: Array<String>) {
-	runApplication<Ed3InvestimentosApplication>(*args)
+	runApplication<br.com.ed3.Ed3InvestimentosApplication>(*args)
 }

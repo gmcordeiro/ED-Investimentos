@@ -1,7 +1,6 @@
 @file:Suppress("unused")
-package ED3.infrastructure
+package br.com.ed3.infrastructure
 
-import ED3.infrastructure.Response
 import java.lang.RuntimeException
 
 open class ClientException(message: kotlin.String? = null, val statusCode: Int = -1, val response: Response? = null) : RuntimeException(message) {

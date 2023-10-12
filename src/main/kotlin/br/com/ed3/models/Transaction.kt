@@ -13,9 +13,8 @@
     "UnusedImport"
 )
 
-package ED3.Investimentos.models
+package br.com.ed3.models
 
-import br.com.ED3Investimentos.models.FinancialAssets
 import com.squareup.moshi.Json
 
 /**

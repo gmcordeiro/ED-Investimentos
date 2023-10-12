@@ -1,4 +1,4 @@
-package ED3.infrastructure
+package br.com.ed3.infrastructure
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

@@ -1,4 +1,4 @@
-package ED3.infrastructure
+package br.com.ed3.infrastructure
 
 import okhttp3.Response
 

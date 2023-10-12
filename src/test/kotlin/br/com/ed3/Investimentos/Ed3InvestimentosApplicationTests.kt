@@ -1,4 +1,4 @@
-package ED3.Investimentos
+package br.com.ed3.Investimentos
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

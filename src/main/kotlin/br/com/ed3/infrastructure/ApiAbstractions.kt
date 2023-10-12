@@ -1,4 +1,4 @@
-package ED3.infrastructure
+package br.com.ed3.infrastructure
 
 typealias MultiValueMap = MutableMap<String,List<String>>
 

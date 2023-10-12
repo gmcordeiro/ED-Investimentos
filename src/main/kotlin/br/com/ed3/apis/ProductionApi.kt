@@ -13,29 +13,29 @@
         "UnusedImport"
 )
 
-package ED3.apis
+package br.com.ed3.apis
 
 import java.io.IOException
 import okhttp3.OkHttpClient
 import okhttp3.HttpUrl
 
-import ED3.Investimentos.models.FinancialAssets
-import ED3.Investimentos.models.Portfolio
-import ED3.Investimentos.models.Transaction
+import br.com.ed3.models.FinancialAssets
+import br.com.ed3.models.Portfolio
+import br.com.ed3.models.Transaction
 
-import ED3.infrastructure.ApiClient
-import ED3.infrastructure.ApiResponse
-import ED3.infrastructure.ClientException
-import ED3.infrastructure.ClientError
-import ED3.infrastructure.ServerException
-import ED3.infrastructure.ServerError
-import ED3.infrastructure.MultiValueMap
-import ED3.infrastructure.RequestConfig
-import ED3.infrastructure.RequestMethod
-import ED3.infrastructure.ResponseType
-import ED3.infrastructure.Success
+import br.com.ed3.infrastructure.ApiClient
+import br.com.ed3.infrastructure.ApiResponse
+import br.com.ed3.infrastructure.ClientException
+import br.com.ed3.infrastructure.ClientError
+import br.com.ed3.infrastructure.ServerException
+import br.com.ed3.infrastructure.ServerError
+import br.com.ed3.infrastructure.MultiValueMap
+import br.com.ed3.infrastructure.RequestConfig
+import br.com.ed3.infrastructure.RequestMethod
+import br.com.ed3.infrastructure.ResponseType
+import br.com.ed3.infrastructure.Success
 
-class ProductionApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = ApiClient.defaultClient) : ApiClient(basePath, client) {
+class ProductionApi(basePath: kotlin.String = br.com.ed3.apis.ProductionApi.Companion.defaultBasePath, client: OkHttpClient = ApiClient.defaultClient) : ApiClient(basePath, client) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
