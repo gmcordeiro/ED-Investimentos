@@ -181,6 +181,23 @@ paths:
           description: "invalid input, object invalid"
         "409":
           description: an existing item already exists
+    delete:
+      tags:
+        - production
+      summary: Delete Transaction Item
+      description: delete an item to the system
+      operationId: deleteTransaction
+      requestBody:
+        content:
+          aplication/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+      responses:
+        "200":
+          description: Item removido
+        "400":
+          description: item não removido
+
 components:
   schemas:
     Portfolio:
@@ -220,6 +237,12 @@ components:
         enterpriseName:
           type: string
           example: Itaúsa
+        numberAssets:
+          type: integer
+          example: 2
+        unitAssetValue:
+          type: number
+          example: 0.60
     Transaction:
       required:
       - assetID

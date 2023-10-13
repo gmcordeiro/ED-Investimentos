@@ -17,11 +17,12 @@ class AssetsJDBCRepository(
 	private  companion object {
 		val LOGGER = KotlinLogging.logger {}
 	}
+
     override fun findAll(): List<FinancialAssets> {
         val assetList = try {
 	        db.query(AssetsSQLExpressions.sqlSelectAll(), rowMapper())
         } catch (ex: Exception){
-			LOGGER.error { "Houve um erro ao consultar os produtos: ${ex.message}" }
+			LOGGER.error { "Houve um erro ao consultar ativos financeiros: ${ex.message}" }
 			throw ex
 		}
         return assetList
@@ -32,7 +33,7 @@ class AssetsJDBCRepository(
 		val asset = try{
 			db.query(AssetsSQLExpressions.sqlSelectByID(), params, rowMapper()).firstOrNull()
 		} catch (ex: Exception){
-			LOGGER.error { "Houve um erro ao consultar os produtos: ${ex.message}" }
+			LOGGER.error { "Houve um erro ao consultar os ativos financeiros: ${ex.message}" }
 			throw ex
 		}
 		return asset
@@ -49,7 +50,7 @@ class AssetsJDBCRepository(
 
 	        return db.update(AssetsSQLExpressions.sqlInsert(), params) > 0
         }catch (ex: Exception){
-	        LOGGER.error { "Erro ao inseri o produto: ${ex.message}" }
+	        LOGGER.error { "Erro ao inserir o ativo financeiro: ${ex.message}" }
 	        throw ex
 		}
     }
@@ -57,11 +58,11 @@ class AssetsJDBCRepository(
     private fun rowMapper() = org.springframework.jdbc.core.RowMapper<FinancialAssets> { rs, _ ->
         val assetID = UUID.fromString(rs.getString("id"))
         FinancialAssets(
-            assetID,
-            rs.getString("ticket"),
-            rs.getString("enterpriseName"),
-            rs.getDouble("unitAssetValue"),
-            rs.getInt("numberAssets")
+            id = assetID,
+            ticket = rs.getString("ticket"),
+            enterpriseName = rs.getString("enterpriseName"),
+            unitAssetValue = rs.getDouble("unitAssetValue"),
+            numberAssets = rs.getInt("numberAssets")
         )
     }
 }
