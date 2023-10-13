@@ -13,32 +13,37 @@
     "UnusedImport"
 )
 
-package br.com.ed3.models
+package br.com.ed3.domain.portfolio
+
 
 import com.squareup.moshi.Json
+import java.util.UUID
 
 /**
  * 
  *
  * @param id 
- * @param transactionType 
- * @param assetID 
- * @param numberAssets 
- * @param transactionValue 
+ * @param ticket 
+ * @param enterpriseName 
  */
 
 
-interface Transaction {
+data class FinancialAssets (
 
     @Json(name = "id")
-    val id: java.util.UUID
-    @Json(name = "transactionType")
-    val transactionType: kotlin.String
-    @Json(name = "assetID")
-    val assetID: FinancialAssets
+    val id: java.util.UUID = UUID.randomUUID(),
+
+    @Json(name = "ticket")
+    val ticket: kotlin.String,
+
+    @Json(name = "enterpriseName")
+    val enterpriseName: kotlin.String,
+
+    @Json(name = "unitAssetValue")
+    val unitAssetValue: kotlin.Double,
+
     @Json(name = "numberAssets")
     val numberAssets: kotlin.Int
-    @Json(name = "transactionValue")
-    val transactionValue: java.math.BigDecimal
-}
+
+)
 

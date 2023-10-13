@@ -107,7 +107,7 @@ paths:
     post:
       tags:
       - production
-      summary: adds an Transaction itens
+      summary: adds an financial assets itens
       description: Adds an item to the system
       operationId: addAssets
       requestBody:
@@ -165,7 +165,7 @@ paths:
     post:
       tags:
       - production
-      summary: adds an financial assets itens
+      summary: adds an transaction itens
       description: Adds an item to the system
       operationId: addTransactions
       requestBody:
