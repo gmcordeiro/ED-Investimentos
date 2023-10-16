@@ -48,4 +48,16 @@ object TransactionSQLExpressions {
 	fun sqlDeleteByID() = """
 		DELETE FROM tbl_transaction WHERE id = :id
 	""".trimIndent()
+
+	fun sqlUpdate() = """
+		UPDATE INTO tbl_transaction 
+		 SET
+		 	id = :id,
+		 	transactionType = :transactionType,
+		 	assetID = :assetID, 
+			numberAssets = :numberAssets,
+			transactionValue = :transactionValue
+		VALUES
+			id = :id
+	""".trimIndent()
 }

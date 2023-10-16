@@ -20,7 +20,7 @@ class TransactionJDBCRepository(
 
 	override fun findAll(): List<Transaction> {
 		val transaction = try {
-			db.query(TransactionSQLExpressions.sqlSelectAll(), rowMapper())
+			db.query(TransactionSQLExpressions.sqlSelectAll(), rowMapperFind())
 		} catch (ex: Exception){
 			LOGGER.error { "Houve um erro ao consultar as transações: ${ex.message}" }
 			throw ex
@@ -31,7 +31,7 @@ class TransactionJDBCRepository(
 	override fun findByID(transactionID: UUID): Transaction? {
 		val params = MapSqlParameterSource("id", transactionID.toString())
 		val transaction = try{
-			db.query(TransactionSQLExpressions.sqlSelectByID(), params, rowMapper()).firstOrNull()
+			db.query(TransactionSQLExpressions.sqlSelectByID(), params, rowMapperFind()).firstOrNull()
 		} catch (ex: Exception){
 			LOGGER.error { "Houve um erro ao consultar os transações: ${ex.message}" }
 			throw ex
@@ -55,6 +55,22 @@ class TransactionJDBCRepository(
 		}
 	}
 
+	override fun update(transaction: Transaction): Boolean {
+		try {
+			val params = MapSqlParameterSource()
+			params.addValue("id", transaction.id.toString())
+			params.addValue("transactionType", transaction.transactionType)
+			params.addValue("assetID", transaction.assetID.toString())
+			params.addValue("numberAssets", transaction.numberAssets)
+			params.addValue("transactionValue", transaction.transactionValue)
+
+			return db.update(TransactionSQLExpressions.sqlUpdate(), params) > 0
+		}catch (ex: Exception){
+			LOGGER.error { "Erro ao inseri a transação: ${ex.message}" }
+			throw ex
+		}
+	}
+
 	override fun delete(transactionID: UUID): Boolean {
 		return try {
 			val params = MapSqlParameterSource("id", transactionID.toString())
@@ -66,7 +82,7 @@ class TransactionJDBCRepository(
 		}
 	}
 
-	private fun rowMapper() = org.springframework.jdbc.core.RowMapper<Transaction> { rs, _ ->
+	private fun rowMapperFind() = org.springframework.jdbc.core.RowMapper<Transaction> { rs, _ ->
 		val transactionID = UUID.fromString(rs.getString("id"))
 		Transaction(
 			id = transactionID,
