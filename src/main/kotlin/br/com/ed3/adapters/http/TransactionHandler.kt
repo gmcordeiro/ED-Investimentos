@@ -29,6 +29,11 @@ class TransactionHandler(
 		return ResponseEntity.status(HttpStatus.CREATED).body(objTransaction)
 	}
 
+	fun update(transaction: TransactionCreateCommand, transactionID: String): ResponseEntity<Transaction> {
+		val objTransaction = transactionService.update(transaction, UUID.fromString(transactionID))
+		return ResponseEntity.status(HttpStatus.CREATED).body(objTransaction)
+	}
+
 	fun delete(transactionID: String): ResponseEntity<String>{
 		transactionService.delete(UUID.fromString(transactionID))
 		return ResponseEntity.noContent().build()

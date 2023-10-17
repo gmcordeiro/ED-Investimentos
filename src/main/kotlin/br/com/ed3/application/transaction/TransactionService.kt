@@ -26,6 +26,13 @@ class TransactionService(
 		return findByID(transactionDomain.id)
 	}
 
+	fun update (transaction: TransactionCreateCommand, transactionID: UUID): Transaction{
+		val transactionDomain = transaction.toTransaction(transactionID)
+		transactionRepository.update(transactionDomain) ?: TransactionNotInsertException(transactionDomain.id)
+
+		return findByID(transactionDomain.id)
+	}
+
 	fun delete(transactionID: UUID){
 		transactionRepository.findByID(transactionID) ?: throw TransactionIsNotFoundException(transactionID)
 		transactionRepository.delete(transactionID)

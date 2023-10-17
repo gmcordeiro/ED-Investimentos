@@ -41,13 +41,7 @@ class TransactionJDBCRepository(
 
 	override fun insert(transaction: Transaction): Boolean {
 		try {
-			val params = MapSqlParameterSource()
-			params.addValue("id", transaction.id.toString())
-			params.addValue("transactionType", transaction.transactionType)
-			params.addValue("assetID", transaction.assetID.toString())
-			params.addValue("numberAssets", transaction.numberAssets)
-			params.addValue("transactionValue", transaction.transactionValue)
-
+			val params = MapSQLParameterInsert(transaction)
 			return db.update(TransactionSQLExpressions.sqlInsert(), params) > 0
 		}catch (ex: Exception){
 			LOGGER.error { "Erro ao inseri a transação: ${ex.message}" }
@@ -57,13 +51,7 @@ class TransactionJDBCRepository(
 
 	override fun update(transaction: Transaction): Boolean {
 		try {
-			val params = MapSqlParameterSource()
-			params.addValue("id", transaction.id.toString())
-			params.addValue("transactionType", transaction.transactionType)
-			params.addValue("assetID", transaction.assetID.toString())
-			params.addValue("numberAssets", transaction.numberAssets)
-			params.addValue("transactionValue", transaction.transactionValue)
-
+			val params = MapSQLParameterUpdate(transaction)
 			return db.update(TransactionSQLExpressions.sqlUpdate(), params) > 0
 		}catch (ex: Exception){
 			LOGGER.error { "Erro ao inseri a transação: ${ex.message}" }
@@ -91,5 +79,26 @@ class TransactionJDBCRepository(
 			numberAssets = rs.getInt("numberAssets"),
 			transactionValue = rs.getDouble("transactionValue"),
 		)
+	}
+
+	private fun MapSQLParameterInsert(transaction: Transaction): MapSqlParameterSource{
+		val params = MapSqlParameterSource()
+		params.addValue("id", transaction.id.toString())
+		params.addValue("transactionType", transaction.transactionType)
+		params.addValue("assetID", transaction.assetID.toString())
+		params.addValue("numberAssets", transaction.numberAssets)
+		params.addValue("transactionValue", transaction.transactionValue)
+		return params;
+	}
+
+	private fun MapSQLParameterUpdate(transaction: Transaction): MapSqlParameterSource{
+		val params = MapSqlParameterSource()
+		params.addValue("id", transaction.id.toString())
+		params.addValue("transactionType", transaction.transactionType)
+		params.addValue("assetID", transaction.assetID.toString())
+		params.addValue("numberAssets", transaction.numberAssets)
+		params.addValue("transactionValue", transaction.transactionValue)
+		params.addValue("idWhere", transaction.id.toString())
+		return params;
 	}
 }

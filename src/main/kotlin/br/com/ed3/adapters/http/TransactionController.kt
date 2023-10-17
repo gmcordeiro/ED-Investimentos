@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
@@ -28,6 +29,11 @@ class TransactionController(
 	@PostMapping("/transaction")
 	fun insert(@RequestBody transaction: TransactionCreateCommand): ResponseEntity<Transaction>{
 		return transactionHandler.insert(transaction)
+	}
+
+	@PutMapping("/transaction/{transactionID:$UUID_REGEX}")
+	fun update(@RequestBody transaction: TransactionCreateCommand, @PathVariable transactionID: String): ResponseEntity<Transaction>{
+		return transactionHandler.update(transaction, transactionID)
 	}
 
 	@DeleteMapping("/transaction/{transactionID:$UUID_REGEX}")

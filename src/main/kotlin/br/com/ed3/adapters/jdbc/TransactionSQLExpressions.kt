@@ -50,14 +50,14 @@ object TransactionSQLExpressions {
 	""".trimIndent()
 
 	fun sqlUpdate() = """
-		UPDATE INTO tbl_transaction 
-		 SET
-		 	id = :id,
-		 	transactionType = :transactionType,
-		 	assetID = :assetID, 
-			numberAssets = :numberAssets,
-			transactionValue = :transactionValue
-		VALUES
-			id = :id
+		UPDATE tbl_transaction
+			SET 
+				id = :id,
+				transactionType = :transactionType,
+				assetID = :assetID,
+				numberAssets = :numberAssets,
+				transactionValue = :transactionValue 
+		WHERE
+			id = :idWhere
 	""".trimIndent()
 }
