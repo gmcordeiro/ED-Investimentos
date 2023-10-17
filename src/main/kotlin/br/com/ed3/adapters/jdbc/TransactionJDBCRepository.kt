@@ -6,7 +6,6 @@ import mu.KotlinLogging
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations
 import org.springframework.stereotype.Repository
-import java.awt.image.LookupOp
 import java.util.*
 
 @Repository
@@ -41,7 +40,7 @@ class TransactionJDBCRepository(
 
 	override fun insert(transaction: Transaction): Boolean {
 		try {
-			val params = MapSQLParameterInsert(transaction)
+			val params = mapParameterSource(transaction)
 			return db.update(TransactionSQLExpressions.sqlInsert(), params) > 0
 		}catch (ex: Exception){
 			LOGGER.error { "Erro ao inseri a transação: ${ex.message}" }
@@ -51,7 +50,7 @@ class TransactionJDBCRepository(
 
 	override fun update(transaction: Transaction): Boolean {
 		try {
-			val params = MapSQLParameterUpdate(transaction)
+			val params = mapParameterSource(transaction)
 			return db.update(TransactionSQLExpressions.sqlUpdate(), params) > 0
 		}catch (ex: Exception){
 			LOGGER.error { "Erro ao inseri a transação: ${ex.message}" }
@@ -81,24 +80,13 @@ class TransactionJDBCRepository(
 		)
 	}
 
-	private fun MapSQLParameterInsert(transaction: Transaction): MapSqlParameterSource{
+	private fun mapParameterSource(transaction: Transaction): MapSqlParameterSource{
 		val params = MapSqlParameterSource()
 		params.addValue("id", transaction.id.toString())
 		params.addValue("transactionType", transaction.transactionType)
 		params.addValue("assetID", transaction.assetID.toString())
 		params.addValue("numberAssets", transaction.numberAssets)
 		params.addValue("transactionValue", transaction.transactionValue)
-		return params;
-	}
-
-	private fun MapSQLParameterUpdate(transaction: Transaction): MapSqlParameterSource{
-		val params = MapSqlParameterSource()
-		params.addValue("id", transaction.id.toString())
-		params.addValue("transactionType", transaction.transactionType)
-		params.addValue("assetID", transaction.assetID.toString())
-		params.addValue("numberAssets", transaction.numberAssets)
-		params.addValue("transactionValue", transaction.transactionValue)
-		params.addValue("idWhere", transaction.id.toString())
 		return params;
 	}
 }

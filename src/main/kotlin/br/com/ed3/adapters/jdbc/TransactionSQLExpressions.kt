@@ -58,6 +58,6 @@ object TransactionSQLExpressions {
 				numberAssets = :numberAssets,
 				transactionValue = :transactionValue 
 		WHERE
-			id = :idWhere
+			id = :id
 	""".trimIndent()
 }
