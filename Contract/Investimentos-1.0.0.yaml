@@ -66,7 +66,7 @@ paths:
           description: "invalid input, object invalid"
         "409":
           description: an existing item already exists
-  /asset:
+  /assets:
     get:
       tags:
       - production
@@ -123,7 +123,7 @@ paths:
           description: "invalid input, object invalid"
         "409":
           description: an existing item already exists
-  /transaction:
+  /transactions:
     get:
       tags:
       - production
