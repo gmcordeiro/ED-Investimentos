@@ -16,27 +16,27 @@ private const val UUID_REGEX = "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}
 class TransactionController(
 	private val transactionHandler: TransactionHandler
 ) {
-	@GetMapping("/transaction")
+	@GetMapping("/transactions")
 	fun findAll(): ResponseEntity<List<Transaction>>{
 		return transactionHandler.findAll()
 	}
 
-	@GetMapping("/transaction/{transactionID:$UUID_REGEX}")
+	@GetMapping("/transactions/{transactionID:$UUID_REGEX}")
 	fun findByID(@PathVariable transactionID: String): ResponseEntity<Transaction>{
 		return transactionHandler.findByID(transactionID)
 	}
 
-	@PostMapping("/transaction")
+	@PostMapping("/transactions")
 	fun insert(@RequestBody transaction: TransactionCreateCommand): ResponseEntity<Transaction>{
 		return transactionHandler.insert(transaction)
 	}
 
-	@PutMapping("/transaction/{transactionID:$UUID_REGEX}")
+	@PutMapping("/transactions/{transactionID:$UUID_REGEX}")
 	fun update(@RequestBody transaction: TransactionCreateCommand, @PathVariable transactionID: String): ResponseEntity<Transaction>{
 		return transactionHandler.update(transaction, transactionID)
 	}
 
-	@DeleteMapping("/transaction/{transactionID:$UUID_REGEX}")
+	@DeleteMapping("/transactions/{transactionID:$UUID_REGEX}")
 	fun delete(@PathVariable transactionID: String): ResponseEntity<String>{
 		return transactionHandler.delete(transactionID)
 	}

@@ -15,17 +15,17 @@ private const val UUID_REGEX = "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}
 class AssetController(
     private val assetHandler: AssetHandler
 ) {
-    @GetMapping("/asset")
+    @GetMapping("/assets")
     fun findAll(): ResponseEntity<List<FinancialAssets>>{
         return assetHandler.findAll()
     }
 
-    @GetMapping("/asset/{assetID:$UUID_REGEX}")
+    @GetMapping("/assets/{assetID:$UUID_REGEX}")
     fun findByID(@PathVariable assetID: String): ResponseEntity<FinancialAssets>{
         return assetHandler.findByID(assetID)
     }
 
-    @PostMapping("/asset")
+    @PostMapping("/assets")
     fun insert(@RequestBody asset: AssetCreateCommand): ResponseEntity<FinancialAssets>{
         return assetHandler.insert(asset)
     }

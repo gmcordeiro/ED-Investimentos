@@ -32,7 +32,7 @@ class TransactionJDBCRepository(
 		val transaction = try{
 			db.query(TransactionSQLExpressions.sqlSelectByID(), params, rowMapperFind()).firstOrNull()
 		} catch (ex: Exception){
-			LOGGER.error { "Houve um erro ao consultar os transações: ${ex.message}" }
+			LOGGER.error { "Houve um erro ao consultar as transações: ${ex.message}" }
 			throw ex
 		}
 		return transaction
