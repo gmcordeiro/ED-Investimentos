@@ -1,6 +1,6 @@
 package br.com.ed3.adapters.http.error
 
-import br.com.ed3.application.asset.exceptions.AssetIsNotFoundException
+import br.com.ed3.application.asset.exceptions.AssetNotFoundException
 import mu.KotlinLogging
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -19,7 +19,7 @@ class ErrorHandler {
 
 private fun Throwable.toResponse(): Pair<HttpStatus, ErrorResponse> =
 	when (this) {
-		is AssetIsNotFoundException -> toResponse(
+		is AssetNotFoundException -> toResponse(
 			this.assetID,
 			HttpStatus.NOT_FOUND,
 		)
