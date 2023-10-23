@@ -1,10 +1,8 @@
 package br.com.ed3.adapters.http
 
-import br.com.ed3.application.asset.AssetCreateCommand
 import br.com.ed3.application.transaction.TransactionCreateCommand
 import br.com.ed3.application.transaction.TransactionService
-import br.com.ed3.domain.portfolio.FinancialAssets
-import br.com.ed3.domain.portfolio.Transaction
+import br.com.ed3.domain.transaction.Transaction
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Component
@@ -27,6 +25,11 @@ class TransactionHandler(
 	fun insert(transaction: TransactionCreateCommand): ResponseEntity<Transaction> {
 		val objTransaction = transactionService.insert(transaction)
 		return ResponseEntity.status(HttpStatus.CREATED).body(objTransaction)
+	}
+
+	fun update(transaction: TransactionCreateCommand, transactionID: String): ResponseEntity<Transaction> {
+		val objTransaction = transactionService.update(transaction, UUID.fromString(transactionID))
+		return ResponseEntity.status(HttpStatus.OK).body(objTransaction)
 	}
 
 	fun delete(transactionID: String): ResponseEntity<String>{
