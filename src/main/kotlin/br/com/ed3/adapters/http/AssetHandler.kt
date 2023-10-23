@@ -2,7 +2,7 @@ package br.com.ed3.adapters.http
 
 import br.com.ed3.application.asset.AssetCreateCommand
 import br.com.ed3.application.asset.AssetService
-import br.com.ed3.domain.portfolio.FinancialAssets
+import br.com.ed3.domain.assets.FinancialAssets
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Component

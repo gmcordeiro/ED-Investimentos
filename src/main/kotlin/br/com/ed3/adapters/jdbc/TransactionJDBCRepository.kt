@@ -1,7 +1,7 @@
 package br.com.ed3.adapters.jdbc
 
-import br.com.ed3.domain.portfolio.Transaction
-import br.com.ed3.domain.portfolio.TransactionRepository
+import br.com.ed3.domain.transaction.Transaction
+import br.com.ed3.domain.transaction.TransactionRepository
 import mu.KotlinLogging
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations

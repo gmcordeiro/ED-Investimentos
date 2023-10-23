@@ -1,4 +1,4 @@
-package br.com.ed3.domain.portfolio
+package br.com.ed3.domain.transaction
 
 import java.util.*
 

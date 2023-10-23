@@ -1,13 +1,12 @@
 package br.com.ed3.adapters.jdbc
 
-import br.com.ed3.domain.portfolio.AssetsRepository
-import br.com.ed3.domain.portfolio.FinancialAssets
+import br.com.ed3.domain.assets.AssetsRepository
+import br.com.ed3.domain.assets.FinancialAssets
 import mu.KotlinLogging
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations
 import org.springframework.stereotype.Repository
 import java.util.UUID
-import javax.swing.tree.RowMapper
 
 @Repository
 class AssetsJDBCRepository(

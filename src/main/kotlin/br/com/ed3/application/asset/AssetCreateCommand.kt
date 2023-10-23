@@ -1,9 +1,7 @@
 package br.com.ed3.application.asset
 
-import br.com.ed3.domain.portfolio.FinancialAssets
-import com.squareup.moshi.Json
+import br.com.ed3.domain.assets.FinancialAssets
 import kotlinx.serialization.Serializable
-import java.util.*
 
 @Serializable
 data class AssetCreateCommand (

@@ -1,7 +1,7 @@
 package br.com.ed3.adapters.http
 
 import br.com.ed3.application.transaction.TransactionCreateCommand
-import br.com.ed3.domain.portfolio.Transaction
+import br.com.ed3.domain.transaction.Transaction
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping

@@ -15,7 +15,7 @@
 
 package br.com.ed3.domain.portfolio
 
-import br.com.ed3.domain.portfolio.FinancialAssets
+import br.com.ed3.domain.assets.FinancialAssets
 import com.squareup.moshi.Json
 import java.util.*
 
