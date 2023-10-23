@@ -13,9 +13,11 @@
     "UnusedImport"
 )
 
-package br.com.ed3.models
+package br.com.ed3.domain.portfolio
 
+import br.com.ed3.domain.portfolio.FinancialAssets
 import com.squareup.moshi.Json
+import java.util.*
 
 /**
  * 
@@ -29,7 +31,7 @@ import com.squareup.moshi.Json
 data class Portfolio (
 
     @Json(name = "id")
-    val id: java.util.UUID,
+    val id: java.util.UUID = UUID.randomUUID(),
 
     @Json(name = "description")
     val description: kotlin.String,
