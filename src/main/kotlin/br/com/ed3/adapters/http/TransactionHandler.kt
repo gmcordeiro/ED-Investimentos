@@ -9,11 +9,17 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Component
 import java.util.*
+import kotlin.collections.List
 
 @Component
 class TransactionHandler(
 	private val transactionService: TransactionService
 ) {
+	fun findAll(): ResponseEntity<List<Transaction>>{
+		val transactions = transactionService.findAll()
+		return ResponseEntity.ok(transactions)
+	}
+
 	fun findByID(transactionID: String): ResponseEntity<Transaction> {
 		val transaction = transactionService.findByID(UUID.fromString(transactionID))
 		return ResponseEntity.ok(transaction)
@@ -21,5 +27,10 @@ class TransactionHandler(
 	fun insert(transaction: TransactionCreateCommand): ResponseEntity<Transaction> {
 		val objTransaction = transactionService.insert(transaction)
 		return ResponseEntity.status(HttpStatus.CREATED).body(objTransaction)
+	}
+
+	fun delete(transactionID: String): ResponseEntity<String>{
+		transactionService.delete(UUID.fromString(transactionID))
+		return ResponseEntity.noContent().build()
 	}
 }

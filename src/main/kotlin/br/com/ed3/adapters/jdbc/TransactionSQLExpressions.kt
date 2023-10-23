@@ -44,4 +44,8 @@ object TransactionSQLExpressions {
 		VALUES
 			(:id, :transactionType, :assetID, :numberAssets, :transactionValue)
 	""".trimIndent()
+
+	fun sqlDeleteByID() = """
+		DELETE FROM tbl_transaction WHERE id = :id
+	""".trimIndent()
 }

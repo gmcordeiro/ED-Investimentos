@@ -11,6 +11,10 @@ import java.util.*
 class TransactionService(
 	private val transactionRepository: TransactionRepository
 ) {
+	fun findAll(): List<Transaction>{
+		return transactionRepository.findAll()
+	}
+
 	fun findByID(transactionID: UUID): Transaction{
 		return transactionRepository.findByID(transactionID) ?: throw TransactionIsNotFoundException(transactionID)
 	}
@@ -20,5 +24,10 @@ class TransactionService(
 		transactionRepository.insert(transactionDomain) ?: TransactionNotInsertException(transactionDomain.id)
 
 		return findByID(transactionDomain.id)
+	}
+
+	fun delete(transactionID: UUID){
+		transactionRepository.findByID(transactionID) ?: throw TransactionIsNotFoundException(transactionID)
+		transactionRepository.delete(transactionID)
 	}
 }
