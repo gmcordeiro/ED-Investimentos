@@ -3,7 +3,6 @@ Desenvolvimento de API REST com Kotlin para o 3º Estudo dirigido de Tec. da Web
 
 | Contrato |
 |----------|
- - [Investimentos-1.0.0-swagger.yaml](Contract/Investimentos-1.0.0-swagger.yaml)
  - [Investimentos-1.0.0.yaml](Contract/Investimentos-1.0.0.yaml)
  - Contrato também disponível no site da ferramenta [swagger](https://app.swaggerhub.com/apis-docs/GMCORDEIRO.inf/Investimentos/1.0.0#/)
 
