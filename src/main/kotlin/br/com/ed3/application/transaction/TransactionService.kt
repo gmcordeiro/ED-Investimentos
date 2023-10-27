@@ -1,7 +1,7 @@
 package br.com.ed3.application.transaction
 
-import br.com.ed3.application.transaction.excepions.TransactionIsNotFoundException
-import br.com.ed3.application.transaction.excepions.TransactionNotInsertException
+import br.com.ed3.application.transaction.exceptions.TransactionNotFoundException
+import br.com.ed3.application.transaction.exceptions.TransactionNotInsertException
 import br.com.ed3.domain.transaction.Transaction
 import br.com.ed3.domain.transaction.TransactionRepository
 import org.springframework.stereotype.Service
@@ -16,17 +16,17 @@ class TransactionService(
 	}
 
 	fun findByID(transactionID: UUID): Transaction {
-		return transactionRepository.findByID(transactionID) ?: throw TransactionIsNotFoundException(transactionID)
+		return transactionRepository.findByID(transactionID) ?: throw TransactionNotFoundException(transactionID)
 	}
 
-	fun insert(transaction: TransactionCreateCommand): Transaction {
+	fun insert(transaction: TransactionCommand): Transaction {
 		val transactionDomain = transaction.toTransaction()
 		transactionRepository.insert(transactionDomain) ?: TransactionNotInsertException(transactionDomain.id)
 
 		return findByID(transactionDomain.id)
 	}
 
-	fun update (transaction: TransactionCreateCommand, transactionID: UUID): Transaction {
+	fun update (transaction: TransactionCommand, transactionID: UUID): Transaction {
 		val transactionDomain = transaction.toTransaction(transactionID)
 		transactionRepository.update(transactionDomain) ?: TransactionNotInsertException(transactionDomain.id)
 
@@ -34,7 +34,7 @@ class TransactionService(
 	}
 
 	fun delete(transactionID: UUID){
-		transactionRepository.findByID(transactionID) ?: throw TransactionIsNotFoundException(transactionID)
+		transactionRepository.findByID(transactionID) ?: throw TransactionNotFoundException(transactionID)
 		transactionRepository.delete(transactionID)
 	}
 }

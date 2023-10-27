@@ -19,7 +19,7 @@ class AssetService(
 		return assetsRepository.findByID(assetID) ?: throw AssetNotFoundException(assetID)
 	}
 
-	fun insert (asset: AssetCreateCommand): FinancialAssets {
+	fun insert (asset: AssetCommand): FinancialAssets {
 		val assetDomain = asset.toAsset()
 		assetsRepository.insertAsset(assetDomain) ?: throw AssetNotInsertException(assetDomain.id)
 

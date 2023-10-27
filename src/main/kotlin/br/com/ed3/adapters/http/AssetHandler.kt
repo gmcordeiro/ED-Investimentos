@@ -1,6 +1,6 @@
 package br.com.ed3.adapters.http
 
-import br.com.ed3.application.asset.AssetCreateCommand
+import br.com.ed3.application.asset.AssetCommand
 import br.com.ed3.application.asset.AssetService
 import br.com.ed3.domain.assets.FinancialAssets
 import org.springframework.http.HttpStatus
@@ -20,7 +20,7 @@ class AssetHandler (
 		val asset = assetService.findByID(UUID.fromString(assetID))
 		return ResponseEntity.ok(asset)
 	}
-	fun insert(asset: AssetCreateCommand): ResponseEntity<FinancialAssets>{
+	fun insert(asset: AssetCommand): ResponseEntity<FinancialAssets>{
 		val objAsset = assetService.insert(asset)
 		return ResponseEntity.status(HttpStatus.CREATED).body(objAsset)
 	}

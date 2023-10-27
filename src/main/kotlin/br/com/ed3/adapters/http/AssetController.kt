@@ -1,6 +1,6 @@
 package br.com.ed3.adapters.http
 
-import br.com.ed3.application.asset.AssetCreateCommand
+import br.com.ed3.application.asset.AssetCommand
 import br.com.ed3.domain.assets.FinancialAssets
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -26,7 +26,7 @@ class AssetController(
     }
 
     @PostMapping("/assets")
-    fun insert(@RequestBody asset: AssetCreateCommand): ResponseEntity<FinancialAssets>{
+    fun insert(@RequestBody asset: AssetCommand): ResponseEntity<FinancialAssets>{
         return assetHandler.insert(asset)
     }
 }

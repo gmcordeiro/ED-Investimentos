@@ -1,6 +1,6 @@
 package br.com.ed3.adapters.http
 
-import br.com.ed3.application.transaction.TransactionCreateCommand
+import br.com.ed3.application.transaction.TransactionCommand
 import br.com.ed3.application.transaction.TransactionService
 import br.com.ed3.domain.transaction.Transaction
 import org.springframework.http.HttpStatus
@@ -22,12 +22,12 @@ class TransactionHandler(
 		val transaction = transactionService.findByID(UUID.fromString(transactionID))
 		return ResponseEntity.ok(transaction)
 	}
-	fun insert(transaction: TransactionCreateCommand): ResponseEntity<Transaction> {
-		val objTransaction = transactionService.insert(transaction)
-		return ResponseEntity.status(HttpStatus.CREATED).body(objTransaction)
+	fun insert(transactionCommand: TransactionCommand): ResponseEntity<Transaction> {
+		val transaction = transactionService.insert(transactionCommand)
+		return ResponseEntity.status(HttpStatus.CREATED).body(transaction)
 	}
 
-	fun update(transaction: TransactionCreateCommand, transactionID: String): ResponseEntity<Transaction> {
+	fun update(transaction: TransactionCommand, transactionID: String): ResponseEntity<Transaction> {
 		val objTransaction = transactionService.update(transaction, UUID.fromString(transactionID))
 		return ResponseEntity.status(HttpStatus.OK).body(objTransaction)
 	}

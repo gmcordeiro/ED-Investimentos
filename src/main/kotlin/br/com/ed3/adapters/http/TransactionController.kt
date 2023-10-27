@@ -1,6 +1,6 @@
 package br.com.ed3.adapters.http
 
-import br.com.ed3.application.transaction.TransactionCreateCommand
+import br.com.ed3.application.transaction.TransactionCommand
 import br.com.ed3.domain.transaction.Transaction
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -27,12 +27,12 @@ class TransactionController(
 	}
 
 	@PostMapping("/transactions")
-	fun insert(@RequestBody transaction: TransactionCreateCommand): ResponseEntity<Transaction>{
+	fun insert(@RequestBody transaction: TransactionCommand): ResponseEntity<Transaction>{
 		return transactionHandler.insert(transaction)
 	}
 
 	@PutMapping("/transactions/{transactionID:$UUID_REGEX}")
-	fun update(@RequestBody transaction: TransactionCreateCommand, @PathVariable transactionID: String): ResponseEntity<Transaction>{
+	fun update(@RequestBody transaction: TransactionCommand, @PathVariable transactionID: String): ResponseEntity<Transaction>{
 		return transactionHandler.update(transaction, transactionID)
 	}
 
