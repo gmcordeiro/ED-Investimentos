@@ -16,8 +16,8 @@ class UserHandler(
 		return ResponseEntity.ok(user)
 	}
 
-	fun findByName(userName: String): ResponseEntity<User>{
-		val user = userService.findByName(userName)
+	fun findByLogin(userLogin: String): ResponseEntity<User>{
+		val user = userService.findByLogin(userLogin)
 		return ResponseEntity.ok(user)
 	}
 
@@ -31,8 +31,8 @@ class UserHandler(
 		return ResponseEntity.status(HttpStatus.OK).body(user)
 	}
 
-	fun delete(userName: String): ResponseEntity<String>{
-		userService.delete(userName)
+	fun delete(userLogin: String): ResponseEntity<String>{
+		userService.delete(userLogin)
 		return ResponseEntity.noContent().build()
 	}
 

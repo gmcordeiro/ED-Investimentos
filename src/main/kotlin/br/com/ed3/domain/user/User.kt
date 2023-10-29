@@ -9,7 +9,7 @@ data class User(
 	val id: UUID = UUID.randomUUID(),
 
 	@Json(name = "user")
-    val user: String,
+    val login: String,
 
 	@Json(name = "name")
 	val name: String,

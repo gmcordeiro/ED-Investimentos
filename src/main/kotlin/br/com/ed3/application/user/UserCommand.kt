@@ -11,7 +11,7 @@ data class UserCommand(
 )
 
 fun UserCommand.toUser() = User(
-	user = user,
+	login = user,
 	name = name,
 	email = email,
 	password = password
@@ -19,7 +19,7 @@ fun UserCommand.toUser() = User(
 
 fun UserCommand.toUser(userID: UUID) = User(
 	id = userID,
-	user = user,
+	login = user,
 	name = name,
 	email = email,
 	password = password

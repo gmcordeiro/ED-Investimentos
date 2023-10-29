@@ -22,9 +22,9 @@ class UserController(
 		return userHandler.findAll()
 	}
 
-	@GetMapping("/users/{userName}")
-	fun findByName(@PathVariable userName: String): ResponseEntity<User>{
-		return userHandler.findByName(userName)
+	@GetMapping("/users/{userLogin}")
+	fun findByLogin(@PathVariable userLogin: String): ResponseEntity<User>{
+		return userHandler.findByLogin(userLogin)
 	}
 
 	@PostMapping("/users")
@@ -32,14 +32,14 @@ class UserController(
 		return userHandler.insert(userCommand)
 	}
 
-	@PutMapping("/users/{userName}")
-	fun update(@RequestBody userCommand: UserCommand, @PathVariable userName: String): ResponseEntity<User>{
-		return userHandler.update(userCommand, userName)
+	@PutMapping("/users/{userLogin}")
+	fun update(@RequestBody userCommand: UserCommand, @PathVariable userLogin: String): ResponseEntity<User>{
+		return userHandler.update(userCommand, userLogin)
 	}
 
-	@DeleteMapping("/users/{userName}")
-	fun delete(@PathVariable userName: String): ResponseEntity<String>{
-		return userHandler.delete(userName)
+	@DeleteMapping("/users/{userLogin}")
+	fun delete(@PathVariable userLogin: String): ResponseEntity<String>{
+		return userHandler.delete(userLogin)
 	}
 
 }

@@ -4,7 +4,6 @@ import br.com.ed3.application.user.exceptions.UserNotFoundException
 import br.com.ed3.domain.user.User
 import br.com.ed3.domain.user.UserRepository
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service
 class UserService(
@@ -14,27 +13,27 @@ class UserService(
         return userRepository.findAll()
     }
 
-    fun findByName(userName: String): User {
-        return userRepository.findByName(userName) ?: throw UserNotFoundException(userName)
+    fun findByLogin(userLogin: String): User {
+        return userRepository.findByLogin(userLogin) ?: throw UserNotFoundException(userLogin)
     }
 
     fun insert(user: UserCommand): User {
         val userDomain = user.toUser()
         userRepository.insert(userDomain)
 
-        return findByName(userDomain.name)
+        return findByLogin(userDomain.login)
     }
 
     fun update(user: UserCommand, userName: String): User {
-        val userOld = findByName(userName)
+        val userOld = findByLogin(userName)
         val userDomain = user.toUser(userOld.id)
         userRepository.update(userDomain)
 
-        return findByName(userDomain.name)
+        return findByLogin(userDomain.login)
     }
 
-    fun delete(userName: String){
-        userRepository.findByName(userName) ?: throw UserNotFoundException(userName)
-        userRepository.delete(userName)
+    fun delete(userLogin: String){
+        userRepository.findByLogin(userLogin) ?: throw UserNotFoundException(userLogin)
+        userRepository.delete(userLogin)
     }
 }
