@@ -7,8 +7,6 @@ info:
     email: gmcordeiro.inf@gmail.com
   version: 1.0.0
 servers:
-- url: https://virtserver.swaggerhub.com/GMCORDEIRO.inf/Investimentos/1.0.0
-  description: SwaggerHub API Auto Mocking
 - url: http://localhost:8080
   description: Local Host
 tags:
@@ -29,7 +27,7 @@ paths:
       parameters:
       - name: Portfolio ID
         in: query
-        description: pass a opcional ID for search
+        description: pass a optional ID for search
         required: false
         style: form
         explode: true
@@ -50,7 +48,7 @@ paths:
     post:
       tags:
       - production
-      summary: adds an portfolio itens
+      summary: adds an portfolio items
       description: Adds an item to the system
       operationId: addPortfolio
       requestBody:
@@ -66,7 +64,7 @@ paths:
           description: "invalid input, object invalid"
         "409":
           description: an existing item already exists
-  /asset:
+  /assets:
     get:
       tags:
       - production
@@ -78,7 +76,7 @@ paths:
       parameters:
       - name: Asset ID
         in: query
-        description: pass a opcional ID for search
+        description: pass a optional ID for search
         required: false
         style: form
         explode: true
@@ -87,7 +85,7 @@ paths:
           format: uuid
       - name: Asset Ticket
         in: query
-        description: pass a opcional ticket for search
+        description: pass a optional ticket for search
         required: false
         style: form
         explode: true
@@ -107,7 +105,7 @@ paths:
     post:
       tags:
       - production
-      summary: adds an financial assets itens
+      summary: adds an financial assets items
       description: Adds an item to the system
       operationId: addAssets
       requestBody:
@@ -123,7 +121,7 @@ paths:
           description: "invalid input, object invalid"
         "409":
           description: an existing item already exists
-  /transaction:
+  /transactions:
     get:
       tags:
       - production
@@ -133,18 +131,18 @@ paths:
         available inventory in the system
       operationId: searchTransaction
       parameters:
-      - name: Asset ID
+      - name: assetID
         in: query
-        description: pass a opcional ID for search
+        description: pass a optional ID for search
         required: false
         style: form
         explode: true
         schema:
           type: string
           format: uuid
-      - name: Transaction ID
+      - name: id
         in: query
-        description: pass a opcional ticket for search
+        description: pass a optional ID for search
         required: false
         style: form
         explode: true
@@ -175,12 +173,40 @@ paths:
             schema:
               $ref: '#/components/schemas/Transaction'
       responses:
-        "201":
+        201:
           description: item created
-        "400":
+        400:
           description: "invalid input, object invalid"
-        "409":
+        409:
           description: an existing item already exists
+    put:
+      tags:
+        - production
+      summary: Modify transaction items
+      description: Modify item to the system
+      operationId: updateTransactions
+      parameters:
+        - name: userName
+          in: query
+          description: pass a userName for update
+          style: form
+          explode: true
+          schema:
+            type: string
+            format: string
+      requestBody:
+        description: Transaction item to modify
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+      responses:
+        200:
+          description: ok
+        400:
+          description: is not ok
+        404:
+          description: Transaction not found
     delete:
       tags:
         - production
@@ -189,7 +215,7 @@ paths:
       operationId: deleteTransaction
       requestBody:
         content:
-          aplication/json:
+          application/json:
             schema:
               $ref: '#/components/schemas/Transaction'
       responses:
@@ -197,7 +223,115 @@ paths:
           description: Item removido
         "400":
           description: item não removido
-
+  /users:
+    get:
+      tags:
+        - production
+      summary: searches users
+      description: |
+        By passing in the appropriate options, you can search for
+        available inventory in the system
+      operationId: searchUsers
+      parameters:
+        - name: userName
+          in: query
+          description: pass a opcional userName for search
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            format: string
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        "400":
+          description: is not ok
+        "404":
+          description: User not found
+    post:
+      tags:
+        - production
+      summary: adds an users items
+      description: Adds an item to the system
+      operationId: addUsers
+      requestBody:
+        description: user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        "201":
+          description: item created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        "400":
+          description: "invalid input, object invalid"
+        "409":
+          description: an existing item already exists
+    put:
+      tags:
+        - production
+      summary: Modify user items
+      description: Modify item to the system
+      operationId: updateUser
+      parameters:
+        - name: User Name
+          in: query
+          description: pass a userName for update
+          style: form
+          explode: true
+          schema:
+            type: string
+            format: string
+      requestBody:
+        description: User item to modify
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        200:
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        400:
+          description: is not ok
+        404:
+          description: Transaction not found
+    delete:
+      tags:
+        - production
+      summary: Delete user item
+      description: delete an item to the system
+      operationId: deleteUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        "200":
+          description: ok
+        "400":
+          description: is not ok
+        "404":
+          description: User not found
 components:
   schemas:
     Portfolio:
@@ -270,3 +404,28 @@ components:
         mapping:
           buy: Buy
           sale: Sale
+    User:
+      required:
+        - id
+        - user
+        - name
+        - email
+        - password
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        user:
+          type: string
+          format: name.lastname
+          example: guilherme.cordeiro
+        name:
+          type: string
+          example: Guilherme Cordeiro
+        email:
+          type: string
+          example: guicordeiro2009@gmail.com
+        password:
+          type: string
